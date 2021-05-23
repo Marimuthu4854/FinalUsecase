@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col-md-10" style="margin-left:15%; margin-top: 5%;">
+    <div class="nav-tabs-custom box box-info">
+      <ul class="nav nav-tab">
+        <li class="nav-item pad active"><a href="#tab_1" data-toggle="tab">Account Summary</a></li>
+        <li class="nav-item pad"><a href="#tab_2" data-toggle="tab">Cards</a></li>
+        <li class="nav-item pad"><a href="#tab_3" data-toggle="tab">Loans</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+          <div class="box">
+            <!-- <div class="info-box bg-primary">
+                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+    
+                <div class="info-box-content">
+                  <span class="info-box-text">Widthdrawable Balance</span>
+                  <span class="info-box-number">INR 163,921.00</span>
+    
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 40%"></div>
+                  </div>
+                  <span class="progress-description">
+                        40% Increase in 30 Days 
+                      </span>
+                </div>
+              </div> -->
+            <div class="box-header">
+              <h3 class="box-title">Your Bank Accounts List</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <label>Account Number</label>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <div id="example1_filter" class="dataTables_filter"><input type="search" class="form-control input-sm"
+                      placeholder="" aria-controls="example1"></div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <button class="btn btn-sm btn-primary margin">Search</button>
+                  <button class="btn btn-sm btn-success" [routerLink]="['/account']">Add New Account</button>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th width="30%">Account Name</th>
+                    <th width="30%">Account Number</th>
+                    <th width="25%">Account Type</th>
+                    <th width="25%">Available Balance</th>
+                    <th width="25%">Currency</th>
+                    <th width="25%">View</th>
+                    <th width="25%">Edit</th>
+                    <th width="25%">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let account of accounts">
+                    <td>{{account.CustomerName}}</td>
+                    <td>{{account.AccountNumber}}</td>
+                    <td>{{account.AccountType}}</td>
+                    <td>{{account.Balance | number: '3.4-4' }}</td>
+                    <td>INR</td>
+                    <td>Account Details</td>
+                    <td>Edit Account</td>
+                    <td><span class="badge bg-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th width="30%">Card Name</th>
+                <th width="30%">Card Type</th>
+                <th width="25%">Account Number</th>
+                <th width="25%">Available Credit Limit</th>
+                <th width="25%">Currency</th>
+                <th width="25%">View</th>
+                <th width="25%">Edit</th>
+                <th width="25%">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Marimuthu K</td>
+                <td>Visa</td>
+                <td>1234567890</td>
+                <td>50000</td>
+                <td>INR</td>
+                <td>Card Details</td>
+                <td>Edit Card</td>
+                <td><span class="badge bg-green">Active</span></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_3">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Your Loan Accounts</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="btn btn-primary">Add New Loan</button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th width="30%">Account Name</th>
+                    <th width="30%">Account Number</th>
+                    <th width="25%">Loan Type</th>
+                    <th width="25%">Principal Amount</th>
+                    <th width="25%">Currency</th>
+                    <th width="25%">View</th>
+                    <th width="25%">Edit</th>
+                    <th width="25%">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Marimuthu K</td>
+                    <td>1234567890</td>
+                    <td>Personal Loan</td>
+                    <td>5000000</td>
+                    <td>INR</td>
+                    <td>Account Details</td>
+                    <td>Edit Account</td>
+                    <td><span class="badge bg-green">Active</span></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- nav-tabs-custom -->
+    <div class="row">
+      <div class="col-sm-3">
+        <button class="btn btn-block btn-sm btn-warning btn-flat" [routerLink]="['/banking',1]">View Mini Statement</button>
+      </div>
+      <div class="col-sm-3">
+        <button class="btn btn-block btn-sm btn-info btn-flat" [routerLink]="['/banking',2]">View Detailed Statement</button>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

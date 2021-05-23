@@ -1,0 +1,26 @@
+
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+    
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input id="username1" name="username1" class="form-control mr-sm-2" type="text" formControlName='username1' />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <label class="help-block"
+                    *ngIf="loginForm && !loginForm.get('username1')?.valid && loginForm.get('username1')?.touched">Please enter
+                    username</label>
+        
+                <input id="password1" name="password1" placeholder="Password" class="form-control mr-sm-2" type="password" formControlName="password1" />
+                <span *ngIf="loginForm && !loginForm.get('password1')?.valid && loginForm.get('password1')?.touched">Please enter
+                    password</span>
+        
+                <button id="btnLogin" class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()">Login</button>
+            </div>
+        </form>
+    
+      </div>
+</div>
+
+</body>

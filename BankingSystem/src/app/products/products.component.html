@@ -1,0 +1,50 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="row form-group" ngModelGroup="userData" #userData="ngModelGroup">
+        <div class="col-sm-2">
+            <label for="Title">Title</label>
+            <select id="Title" name="Title" class="form-control" [ngModel]="defaultTitle" #Title="ngModel" required>
+                <label *ngFor="let title of titles">
+                    <option value="title">{{title}}</option>
+                </label>
+            </select>
+        </div>
+        <div class="col-sm-5">
+            <label>First Name</label>
+            <input id="Firstname" name="Firstname" class="form-control" type="text" ngModel #Firstname="ngModel"
+                required />
+        </div>
+        <div class="col-sm-5">
+            <label>Last Name</label>
+            <input id="Lastname" name="Lastname" class="form-control" type="text" ngModel #Lastname="ngModel"
+                required />
+        </div>
+        <p *ngIf="!userData.valid && userData.touched">error form</p>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <label>Email Address</label>
+            <input id="email" name="email" placeholder="test@example.com" class="form-control" type="text" ngModel
+                #email="ngModel" required email />
+            <label *ngIf="!email.valid && email.touched" class="label-error">Please enter valid mail</label>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label>Password</label>
+            <input id="Password" name="Password" class="form-control" type="text" ngModel required
+                #Password="ngModel" />
+        </div>
+        <div class="col-sm-6">
+            <label>Confirm Password</label>
+            <input id="ConfirmPassword" name="ConfirmPassword" class="form-control" type="text" ngModel required
+                #ConfirmPassword="ngModel" />
+            <label *ngIf="Password.value != ConfirmPassword.value" class="label-error">Password does not match</label>
+        </div>
+    </div>
+    <div class="row form-group text-center">
+        <div class="col-sm-12">
+            <button id="btnRegister" [disabled]="!f.valid" class="btn btn-primary"
+                (click)="onRegisterClick()">Register</button>
+        </div>
+    </div>
+</form>

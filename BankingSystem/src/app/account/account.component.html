@@ -1,0 +1,183 @@
+<section class="content-header text-left">
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<div class="col-sm-6"></div>
+<div style="margin-left:25% ;" class="col-offset-sm-3 col-sm-6">
+    <div class="box box-danger">
+        <div class="box-header with-border" style="margin: 15px;">
+            <h3 class="box-title">Create Bank Account</h3>
+        </div>
+        <div class="box-body pad margin">
+            <form class="" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group margin">
+                            <label for="CustomerName">First Name</label>
+                        </div>
+                    <div class="form-group">
+                      
+                        <div class="input-group margin">
+                            <input id="CustomerName" name="CustomerName" formControlName="CustomerName" type="text"
+                                class="form-control">
+                            <span class="input-group-btn" >
+                                <button type="button" class="btn btn-info btn-info" data-toggle="modal" data-target="#modal-info" style="color:white">Search</button>
+                            </span>
+                            <span
+                            *ngIf="accountForm && !accountForm?.get('CustomerName')?.valid && accountForm?.get('CustomerName')?.touched"
+                            class="form-control-feedback">
+                            Please enter Customer Name
+                        </span>
+                        </div>
+                       
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Account Type</label>
+                    </div>
+                    <div class="form-group margin">
+                        <label>
+                            <input type="radio" value="Savings" formControlName="AccountType">
+                            <span class="pad">Savings Bank Account</span>
+                        </label>
+                        <label>
+                            <input type="radio" value="Current" formControlName="AccountType">
+                            <span class="pad">Current Bank Account</span>
+                        </label>
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('AccountType')?.valid && accountForm?.get('AccountType')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please select Account Type
+                        </span>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Account Category</label>
+                    </div>
+                    <div class="form-group margin">
+                        <label>
+                            <input type="radio" value="Single" formControlName="AccountCategory">
+                            <span class="pad">Single</span>
+                        </label>
+                        <label>
+                            <input type="radio" value="Joint" formControlName="AccountCategory">
+                            <span class="pad">Joint</span>
+                        </label>
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('AccountCategory')?.valid && accountForm?.get('AccountCategory')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please select Account Category
+                        </span>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Branch</label>
+                    </div>
+                    <div class="form-group margin">
+                        <input id="BranchID" name="BranchID" type="text" formControlName="BranchID"
+                            class="form-control">
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('BranchID')?.valid && accountForm?.get('BranchID')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please select Branch
+                        </span>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Account Number</label>
+                    </div>
+                    <div class="form-group margin">
+                        <input id="AccountNumber" name="AccountNumber" type="text" formControlName="AccountNumber"
+                            class="form-control">
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('AccountNumber')?.valid && accountForm?.get('AccountNumber')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please enter Account Number
+                        </span>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Initial Balance</label>
+                    </div>
+                    <div class="form-group margin">
+                        <input id="Balance" name="Balance" type="text" formControlName="Balance" class="form-control">
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('Balance')?.valid && accountForm?.get('Balance')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please enter Balance Amount
+                        </span>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="form-group margin">
+                        <label>Status</label>
+                    </div>
+                    <div class="form-group margin">
+                        <input id="Status" name="Status" type="text" formControlName="Status" class="form-control">
+                        <span
+                            *ngIf="accountForm && !accountForm?.get('Status')?.valid && accountForm?.get('Status')?.touched"
+                            class="glyphicon glyphicon-envelope form-control-feedback">
+                            Please select Status
+                        </span>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group margin">
+                        
+                            <div class="pull-left">
+                                <button type="button" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div class="pull-right">
+                                <button type="submit" [disabled]="!accountForm.valid"
+                                    class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal modal-info fade in" id="modal-info" style="display: block; padding-right: 16px;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+              <h4 class="modal-title">Info Modal</h4>
+            </div>
+            <div class="modal-body">
+              <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+</div>

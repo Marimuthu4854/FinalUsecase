@@ -1,0 +1,106 @@
+<!-- <section class="content-header text-left">
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section> -->
+<div class="col-sm-12 margin-top" style="margin-left:15%; margin-top: 5%;"></div>
+<div style="margin-left:15% ;" class="col-offset-sm-3 col-sm-10">
+    <div class="box box-danger">
+        <div class="box-header with-border" style="margin: 15px;">
+            <h3 class="box-title">{{title}}</h3>
+        </div>
+        <div class="box-body pad margin">
+            <form class="" >
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group margin">
+                            <label for="FromDate">From Date</label>
+                        </div>
+                    <div class="form-group">
+                        <div class="input-group margin">
+                            <input id="FromDate" name="FromDate" type="text"
+                                class="form-control">
+                        </div>                       
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group margin">
+                            <label for="ToDate">To Date</label>
+                        </div>
+                    <div class="form-group">
+                        <div class="input-group margin">
+                            <input id="ToDate" name="ToDate"  type="text"
+                                class="form-control">
+                        </div>                       
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group margin">
+                        <label>Frequency</label>
+                    </div>
+                    <div class="form-group margin">
+                        <label>
+                            <input type="radio" value="Monthy" >
+                            <span class="pad">Monthy</span>
+                        </label>
+                        <label>
+                            <input type="radio" value="Annually" >
+                            <span class="pad">Annually</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group margin">
+                        
+                            <div class="pull-left margin">
+                                <button type="button" class="btn btn-danger">Clear</button>
+                            </div>
+                            <div class="pull-left margin">
+                                <button type="submit" 
+                                    class="btn btn-success">Get Statement</button>
+                            </div>
+                            <div class="pull-left margin">  
+                                <button (click)="ExportTOExcel()" class="btn bg-purple">ExportTOExcel</button> </div>  
+                        </div>
+                    </div>
+                </div>
+                             <div class="row">
+                                <div class="col-lg-12 table-responsive" #TABLE #table>  
+                                    <div style="padding-bottom: 10px;padding-top: 10px;">  
+                                      <div class="row">  
+                                      </div>  
+                                    </div>  
+                                    <table class="table table-bordered">  
+                                      <thead class="thead-dark">  
+                                        <tr>  
+                                          <th>Transaction Date</th>  
+                                          <th>From Account Number</th>  
+                                          <th>To Account Number</th>  
+                                          <th>Transaction Type</th>  
+                                          <th>Remarks</th>  
+                                          <th>Amount</th>  
+                                        </tr>  
+                                      </thead>  
+                                      <tbody>  
+                                        <tr *ngFor="let transaction of transactions">  
+                                          <td>{{transaction.TransactionDate}}</td>  
+                                          <td>{{transaction.FromAccountNumber}}</td>  
+                                          <td>{{transaction.ToAccountNumber}}</td>  
+                                          <td>{{transaction.TransactionType}}</td>  
+                                          <td>{{transaction.TransactionRemarks}}</td>  
+                                          <td>{{transaction.TransactionAmount}}</td>  
+                                        </tr>  
+                                      </tbody>  
+                                    </table>  
+                                  </div>  
+                </div>
+            </form>
+        </div>
+    </div>
+   
+</div>
+

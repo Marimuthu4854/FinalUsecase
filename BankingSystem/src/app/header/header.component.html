@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-1">
+    <a class="navbar-brand" href="#">ABC Bank </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/banking">Accounts</a>
+        </li>
+          <li class="nav-item active">
+          <a class="nav-link" routerLink="/transaction">Payment & Transfer</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/user">Customer</a>
+        </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" routerLink="/branch">Branch</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/accounttypes">Account Types</a>
+        </li> -->
+        <li class="nav-item active pull-right">
+          <a class="nav-link" (click)="logOut()">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
