@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { ProductsComponent } from './products/products.component';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { UserService } from './services/user.service';
@@ -96,7 +95,6 @@ const appRoutes: Routes = [{
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    ProductsComponent,
     HeaderComponent,
     UserComponent,
     TransactionComponent,

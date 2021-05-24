@@ -1,110 +1,116 @@
-<section class="content-header text-left">
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
-    </ol>
-</section>
+<div class="col-sm-6"></div>
+<br>
 <div class="col-sm-6"></div>
 <div style="margin-left:25% ;" class="col-offset-sm-3 col-sm-6">
     <div class="box box-info">
         <div class="row">
-        <div class="box-header with-border">
-            <h3 class="box-title">Customer Registration</h3>
+            <div class="box-header with-border margin">
+                <h3 class="box-title">Customer Registration</h3>
+            </div>
         </div>
-    </div>
         <form style="margin: 20px;" class="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="firstName">First Name</label>
                     <input id="firstName" name="firstName" formControlName="firstName" type="text" class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('firstName')?.valid && userForm?.get('firstName')?.touched" class="form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('firstName')?.valid && userForm?.get('firstName')?.touched"
+                        class="form-control-feedback">
                         Please enter first name
                     </span>
                 </div>
-                <div class="form-group has-feedback col-sm-6">
+                <div class="form-group col-sm-6">
                     <label for="lastName">Last Name</label>
                     <input id="lastName" name="lastName" formControlName="lastName" type="text" class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('lastName')?.valid && userForm?.get('lastName')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('lastName')?.valid && userForm?.get('lastName')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please enter last name
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
-                   <div>
-                    <label>Gender</label>
-                </div>
+                <div class="form-group margin">
+                    <div>
+                        <label>Gender</label>
+                    </div>
                     <label>
-                        <input type="radio" value="Male" formControlName="gender">
+                        <input class="margin" type="radio" value="Male" formControlName="gender">
                         <span>Male</span>
                     </label>
-                    <label>
-                        <input type="radio" value="Female" formControlName="gender">
+                    <label >
+                        <input class="margin" type="radio" value="Female" formControlName="gender">
                         <span>Female</span>
                     </label>
-                    <span *ngIf="userForm && !userForm?.get('gender')?.valid && userForm?.get('gender')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('gender')?.valid && userForm?.get('gender')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please select Gender
                     </span>
                 </div>
             </div>
 
             <div class="row">
-                <div class="form-group has-feedback">
+                <div class="form-group margin">
                     <label>Date of Birth</label>
                     <input id="dateOfBirth" name="dateOfBirth" type="date" formControlName="dateOfBirth"
                         class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('dateOfBirth')?.valid && userForm?.get('dateOfBirth')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <span
+                        *ngIf="userForm && !userForm?.get('dateOfBirth')?.valid && userForm?.get('dateOfBirth')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please select Date Of Birth
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
+                <div class="form-group margin">
                     <label>Email Addresss</label>
-                    <input id="emailAddress" name="emailAddress" type="text" formControlName="emailAddress" placeholder="test@example.com"
-                        class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('emailAddress')?.valid && userForm?.get('emailAddress')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <input id="emailAddress" name="emailAddress" type="text" formControlName="emailAddress"
+                        placeholder="test@example.com" class="form-control">
+                    <span
+                        *ngIf="userForm && !userForm?.get('emailAddress')?.valid && userForm?.get('emailAddress')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please enter Email Address
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
+                <div class="form-group margin">
                     <label>Password</label>
                     <input id="password" type="password" class="form-control" formControlName="password">
-                    <span *ngIf="userForm && !userForm?.get('password')?.valid && userForm?.get('password')?.touched" class="glyphicon glyphicon-lock form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('password')?.valid && userForm?.get('password')?.touched"
+                        class="glyphicon glyphicon-lock form-control-feedback">
                         Please enter Password
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
+                <div class="form-group margin">
                     <label>Address</label>
                     <input id="address" name="address" type="textarea" col="2" row="3" formControlName="address"
                         class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('address')?.valid && userForm?.get('address')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('address')?.valid && userForm?.get('address')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please enter Address
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
+                <div class="form-group margin">
                     <label>State</label>
                     <input id="state" name="state" type="text" formControlName="state" class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('state')?.valid && userForm?.get('state')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                    <span *ngIf="userForm && !userForm?.get('state')?.valid && userForm?.get('state')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
                         Please enter State
                     </span>
                 </div>
             </div>
-            <div class="form-group has-feedback">
+            <div class="form-group margin">
                 <label>PinCode</label>
                 <input id="PinCode" name="pinCode" type="text" formControlName="pinCode" class="form-control">
-                <span *ngIf="userForm && !userForm?.get('pinCode')?.valid && userForm?.get('pinCode')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                <span *ngIf="userForm && !userForm?.get('pinCode')?.valid && userForm?.get('pinCode')?.touched"
+                    class="glyphicon glyphicon-envelope form-control-feedback">
                     Please enter PinCode
                 </span>
             </div>
-            <div class="form-group has-feedback">
+            <div class="form-group margin">
                 <label>Nationality</label>
                 <label>
                     <input type="radio" value="Indian" formControlName="nationality">
@@ -114,20 +120,20 @@
                     <input type="radio" value="NRI" formControlName="nationality">
                     <span>NRI</span>
                 </label>
-                <span *ngIf="userForm && !userForm?.get('nationality')?.valid && userForm?.get('nationality')?.touched" class="glyphicon glyphicon-envelope form-control-feedback">
+                <span *ngIf="userForm && !userForm?.get('nationality')?.valid && userForm?.get('nationality')?.touched"
+                    class="glyphicon glyphicon-envelope form-control-feedback">
                     Please enter Nationality
                 </span>
             </div>
             <div class="row">
-                <div class="form-group has-feedback">
-                <div class="col-sm-6">
-                    <button type="button" class="btn btn-danger">Clear</button>
+                <div class="form-group margin">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-danger" (click)="onReset()">Clear</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" [disabled]="!userForm.valid" class="btn btn-success">Save</button>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <button type="submit" [disabled]="!userForm.valid" class="btn btn-success">Save</button>
-                </div>
-                </div>
-
             </div>
         </form>
     </div>

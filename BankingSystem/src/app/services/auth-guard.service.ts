@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
  
         //check some condition  
         if (!this.authService.isUserLoggedIn())  {
-            this._router.navigate( ['unauthorized']);
+            this._router.navigate( ['login']);
             //redirect to login/home page etc
             //return false to cancel the navigation
             return false;

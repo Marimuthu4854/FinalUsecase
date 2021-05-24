@@ -46,4 +46,8 @@ export class TransactionComponent implements OnInit {
     this.transactionService.SaveTransaction(transaction);
     this.isTransactionSucceed = true;
   }
+
+  onReset(){
+    this.transactionForm.reset();
+  }
 }

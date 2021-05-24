@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BankAccountService } from '../services/account.service';
 import { BankAccount } from '../models/account.model';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-account',
@@ -11,8 +13,14 @@ import { BankAccount } from '../models/account.model';
 export class AccountComponent implements OnInit {
   accountForm!: FormGroup;
   isAddMode = false;
+  users: User[] = [];
 
-  constructor(private accountService:BankAccountService) { }
+  constructor(private accountService: BankAccountService, private userService: UserService) {
+    this.userService.fetchUser('').subscribe(result => {
+      console.log(result);
+      this.users.push(result);
+    })
+   }
 
   ngOnInit(): void {
     this.accountForm = new FormGroup({
@@ -25,22 +33,24 @@ export class AccountComponent implements OnInit {
       'Status': new FormControl(null, Validators.required)
     });
 
+    
+
   }
 
   onSubmit() {
 
     const bankaccount: BankAccount = {
-      CustomerName:this.accountForm.value.CustomerName,
-      AccountID:0,
-      AccountType:this.accountForm.value.AccountType,
-      AccountCategory:this.accountForm.value.AccountCategory,
-      BranchID:this.accountForm.value.BranchID,
-      Balance:this.accountForm.value.Balance,
-      AccountNumber:this.accountForm.value.AccountNumber,
-      Status:this.accountForm.value.Status,
+      CustomerName: this.accountForm.value.CustomerName,
+      AccountID: 0,
+      AccountType: this.accountForm.value.AccountType,
+      AccountCategory: this.accountForm.value.AccountCategory,
+      BranchID: this.accountForm.value.BranchID,
+      Balance: this.accountForm.value.Balance,
+      AccountNumber: this.accountForm.value.AccountNumber,
+      Status: this.accountForm.value.Status,
       CreatedDate: Date.now.toString(),
       CreatedBy: 'marimuthuk',
-      
+
     };
 
     this.accountService.SaveBankAccount(bankaccount);

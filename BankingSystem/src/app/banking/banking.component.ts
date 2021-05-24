@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./banking.component.css']
 })
 export class BankingComponent implements OnInit {
-  allAccounts: BankAccount[]=[];
+  allAccounts: BankAccount[] = [];
   accounts: BankAccount[] = [];
+  searchText: string = '';
   constructor(private accountService: BankAccountService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,8 +23,18 @@ export class BankingComponent implements OnInit {
     })
   }
 
+  onSearch() {
+    
+    if (this.searchText != '') {
+      this.accounts = this.allAccounts.filter(
+        currentUser => currentUser.CustomerName?.toLowerCase().includes(this.searchText.toLowerCase()));
+    }
+    else {
+      this.accounts = this.allAccounts;
+    }
+  }
+
   btnMiniStatementClick() {
     this.router.navigateByUrl('/statement/1');
   }
-
 }

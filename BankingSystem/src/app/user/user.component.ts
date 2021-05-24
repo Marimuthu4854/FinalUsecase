@@ -75,5 +75,8 @@ export class UserComponent implements OnInit {
     this.userService.SaveUser(userData);
   }
 
+  onReset(){
+    this.userForm.reset();
+  }
 
 }

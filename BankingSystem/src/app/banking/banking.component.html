@@ -1,3 +1,4 @@
+<br>
 <div class="row">
   <div class="col-md-10" style="margin-left:15%; margin-top: 5%;">
     <div class="nav-tabs-custom box box-info">
@@ -29,19 +30,19 @@
             </div>
             <div class="row">
               <div class="col-sm-2">
-                <div class="form-group">
+                <div class="form-group margin">
                   <label>Account Number</label>
                 </div>
               </div>
               <div class="col-sm-3">
-                <div class="form-group">
-                  <div id="example1_filter" class="dataTables_filter"><input type="search" class="form-control input-sm"
-                      placeholder="" aria-controls="example1"></div>
+                <div class="form-group margin">
+                  <div id="example1_filter" class="dataTables_filter">
+                    <input type="search"  class="form-control input-sm"  placeholder="" [(ngModel)]="searchText" aria-controls="example1"></div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="form-group">
-                  <button class="btn btn-sm btn-primary margin">Search</button>
+                  <button class="btn btn-sm btn-primary margin" (click)="onSearch()">Search</button>
                   <button class="btn btn-sm btn-success" [routerLink]="['/account']">Add New Account</button>
                 </div>
               </div>

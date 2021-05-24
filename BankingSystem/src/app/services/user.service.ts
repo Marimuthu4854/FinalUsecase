@@ -46,11 +46,39 @@ export class UserService {
                 map(responseData => {
                     console.log(responseData);
                     for (let value of Object.values(responseData)) {
-                        if (value.EmailAddress == name) {
+                        if (name !='' && value.EmailAddress == name) {
+                            userData.push(value);
+                        }
+                        else if(name ==''){
                             userData.push(value);
                         }
                     }
+                    console.log(userData);
                     return userData[0];
+                }));
+    }
+
+    fetchAllUser() {
+        const userData: User[] = [];
+        return this.http.get<{ [key: string]: User }>('https://newproject-e37f6-default-rtdb.firebaseio.com/user.json',
+            {
+                headers: new HttpHeaders({
+                    "Access-Control-Allow-Origin": "*",
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE',
+                    'Access-Control-Allow-Headers': '*',
+                    'Content-Type': 'application/json', 'crossDomain': 'true'
+                })
+            })
+            .pipe(
+                map(responseData => {
+                    console.log(responseData);
+                    for (let value of Object.values(responseData)) {
+                        
+                            userData.push(value);
+                        
+                    }
+                    console.log(userData);
+                    return userData;
                 }));
     }
 }
