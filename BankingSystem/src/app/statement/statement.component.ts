@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import { ElementRef, ViewChild } from '@angular/core';
 import { Transaction } from '../models/transaction.model';
 import { TransactionService } from '../services/transaction.service';
+import { NgForm } from '@angular/forms';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-statement',
@@ -16,12 +18,18 @@ export class StatementComponent implements OnInit {
   transactions: Transaction[] = [];
 
   @ViewChild('TABLE', { static: false }) TABLE!: ElementRef;
-  constructor(private route: ActivatedRoute, private transactionService: TransactionService) { }
+  constructor(private route: ActivatedRoute, private transactionService: TransactionService) {
+
+  }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params['id']);
-    this.title = Number(this.route.snapshot.params['id']) == 1 ? 'Mini Statement' : 'Detailed Statement';
-    this.mode = Number(this.route.snapshot.params['id']) == 1 ? 'MINI' : 'DETAIL';
+
+    this.route.params.subscribe(params => {
+      console.log(this.route.snapshot.params['id']);
+      this.title = Number(this.route.snapshot.params['id']) == 1 ? 'Mini Statement' : 'Detailed Statement';
+      this.mode = Number(this.route.snapshot.params['id']) == 1 ? 'MINI' : 'DETAIL';
+    })
+
     this.transactionService.fetchTransaction(this.mode).subscribe(records => {
       this.transactions = records;
     });
@@ -32,5 +40,9 @@ export class StatementComponent implements OnInit {
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
     XLSX.writeFile(workbook, 'Statement.xlsx');
+  }
+
+  onReset(statemtform: NgForm) {
+    statemtform.reset();
   }
 }

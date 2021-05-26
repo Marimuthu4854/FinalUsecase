@@ -8,14 +8,13 @@ import { UserService } from '../services/user.service';
 
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-user-view',
+  templateUrl: './viewuser.component.html'
 })
-export class UserComponent implements OnInit {
+export class ViewUserComponent implements OnInit {
   userForm!: FormGroup;
   isAddMode = false;
-  currentUser: User[] = [];
+  currentUser!: User;
   isSaved: boolean = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
@@ -47,22 +46,21 @@ export class UserComponent implements OnInit {
     
     if (!this.isAddMode) {
       this.userService.fetchUser(this.route.snapshot.params['name']).subscribe(posts => {
-        this.userForm.patchValue({
-          'firstName': posts.FirstName,
-          'lastName': posts.LastName,
-          'gender': posts.Gender,
-          'dateOfBirth': posts.DateOfBirth,
-          'emailAddress': posts.EmailAddress,
-          'address': posts.Address,
-          'password': posts.Password,
-          'state': posts.State,
-          'pinCode': posts.PinCode,
-          'nationality': posts.Nationality,
-          'Username': posts.UserName
-        });
-        console.log(posts);
+        this.currentUser.FirstName = posts.FirstName;
+        this.currentUser.LastName = posts.LastName;
+        this.currentUser.Gender = posts.Gender;
+        this.currentUser.DateOfBirth = posts.DateOfBirth;
+        this.currentUser.EmailAddress = posts.EmailAddress;
+        this.currentUser.Address = posts.Address;
+        this.currentUser.Password = posts.Password;
+        this.currentUser.State = posts.State;
+        this.currentUser.PinCode = posts.PinCode;
+        this.currentUser.Nationality = posts.Nationality;
+        this.currentUser.UserName = posts.UserName;
+        
       });
     }
+    console.log(this.currentUser);
   }
 
   onSubmit() {

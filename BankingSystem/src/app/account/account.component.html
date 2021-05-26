@@ -1,6 +1,7 @@
-<br>>
+<br>
+<div class="col-sm-12">
 <div class="col-sm-6"></div>
-<div style="margin-left:25% ;" class="col-offset-sm-3 col-sm-6">
+<div style="margin-left:30% ;" class="col-offset-sm-3 col-sm-6">
     <div class="box box-danger">
         <div class="box-header with-border" style="margin: 15px;">
             <h3 class="box-title">Create Bank Account</h3>
@@ -15,7 +16,9 @@
                     <div class="form-group margin">
                         <input class="form-control" id="CustomerName" name="CustomerName" formControlName="CustomerName"/>
                         <!-- <select class="form-control" id="CustomerName" name="CustomerName" formControlName="CustomerName">
-                            <option *ngFor="let user in users" >{{user.FirstName}}</option>
+                            <option *ngFor="let user in users" >
+                                {{user.FirstName}}
+                            </option>
                           </select> -->
                             <span
                             *ngIf="accountForm && !accountForm?.get('CustomerName')?.valid && accountForm?.get('CustomerName')?.touched"
@@ -137,11 +140,11 @@
                     <div class="form-group margin">
                         
                             <div class="pull-left">
-                                <button type="button" class="btn btn-danger">Clear</button>
+                                <button type="button" class="btn btn-sm btn-danger">Clear</button>
                             </div>
                             <div class="pull-right">
                                 <button type="submit" [disabled]="!accountForm.valid"
-                                    class="btn btn-success">Save</button>
+                                    class="btn btn-sm btn-success">Save</button>
                             </div>
                         </div>
                     </div>
@@ -169,4 +172,5 @@
         </div>
        
       </div> -->
+</div>
 </div>

@@ -15,8 +15,8 @@
           <li class="nav-item active">
           <a class="nav-link" routerLink="/transaction">Payment & Transfer</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/user">Customer</a>
+        <li *ngIf="isAdmin" class="nav-item active">
+          <a class="nav-link" routerLink="/userlist">Customer</a>
         </li>
         <!-- <li class="nav-item active">
           <a class="nav-link" routerLink="/branch">Branch</a>

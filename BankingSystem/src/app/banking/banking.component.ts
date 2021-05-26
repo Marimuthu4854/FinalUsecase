@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../models/account.model';
 import { BankAccountService } from '../services/account.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-banking',
@@ -12,9 +13,21 @@ export class BankingComponent implements OnInit {
   allAccounts: BankAccount[] = [];
   accounts: BankAccount[] = [];
   searchText: string = '';
-  constructor(private accountService: BankAccountService, private router: Router) { }
+isAdmin:boolean = false;
+
+  constructor(
+    private accountService: BankAccountService, 
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+
+if(this.authService.isAdminUser()){
+  this.isAdmin = true;
+}
+else{
+  this.isAdmin = false;
+}
 
     this.accountService.fetchBankAccount('').subscribe(posts => {
       this.accounts = posts;

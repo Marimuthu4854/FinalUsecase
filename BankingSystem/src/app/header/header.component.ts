@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +10,28 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  username:string='';
-  constructor(private authService: AuthService, private router: Router) { }
+  userFullname: string = '';
+  isAdmin: boolean = false;
+  subscriptionName!: Subscription;
+
+  constructor(private authService: AuthService, private router: Router, private commonService: CommonService) { }
 
   ngOnInit(): void {
-    this.username = 'Admin';
+
+    this.subscriptionName = this.commonService.getUpdate().subscribe
+      (message => { //message contains the data sent from service
+        this.isAdmin = message;
+      });
+
+    if (this.authService.isAdminUser()) {
+      this.isAdmin = true;
+      this.userFullname = 'Admin';
+      alert(this.isAdmin);
+    }
+    else {
+      this.isAdmin = false;
+      this.userFullname = this.authService.CurrentUserFullName();
+    }
   }
 
   logOut() {

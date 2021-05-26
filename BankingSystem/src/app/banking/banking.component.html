@@ -25,13 +25,13 @@
                       </span>
                 </div>
               </div> -->
-            <div class="box-header">
+            <!-- <div class="box-header">
               <h3 class="box-title">Your Bank Accounts List</h3>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-sm-2">
                 <div class="form-group margin">
-                  <label>Account Number</label>
+                  <label>Customer Name</label>
                 </div>
               </div>
               <div class="col-sm-3">
@@ -49,17 +49,17 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-hover dataTable" role="grid">
                 <thead>
-                  <tr>
-                    <th width="30%">Account Name</th>
-                    <th width="30%">Account Number</th>
-                    <th width="25%">Account Type</th>
-                    <th width="25%">Available Balance</th>
-                    <th width="25%">Currency</th>
-                    <th width="25%">View</th>
-                    <th width="25%">Edit</th>
-                    <th width="25%">Status</th>
+                  <tr role="row">
+                    <th width="20%">Account Name</th>
+                    <th width="20%">Account Number</th>
+                    <th width="15%">Account Type</th>
+                    <th width="15%">Available Balance</th>
+                    <th width="10%">Currency</th>
+                    <th width="10%">View</th>
+                    <th width="10%">Edit</th>
+                    <th width="10%">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -69,8 +69,8 @@
                     <td>{{account.AccountType}}</td>
                     <td>{{account.Balance | number: '3.4-4' }}</td>
                     <td>INR</td>
-                    <td>Account Details</td>
-                    <td>Edit Account</td>
+                    <td>View</td>
+                    <td>Edit</td>
                     <td><span class="badge bg-green">Active</span></td>
                   </tr>
                 </tbody>
@@ -117,10 +117,9 @@
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <button class="btn btn-primary">Add New Loan</button>
+                <button class="btn btn-sm btn-success">Add New Loan</button>
               </div>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>

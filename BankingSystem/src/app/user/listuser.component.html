@@ -1,0 +1,38 @@
+<br>
+<div class="row">
+    <div class="col-md-10" style="margin-left:15%; margin-top: 5%;">
+        <div class="box box-warning">
+        <div class="box-header">
+            <button class="btn btn-sm btn-success" [routerLink]="['/user','']">Add New Customer</button>
+        </div>
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="15%">Name</th>
+                        <th width="10%">Gender</th>
+                        <th width="10%">Date of Birth</th>
+                        <th width="20%">Email Address</th>
+                        <th width="15%">UserName</th>
+                        <th width="10%">View</th>
+                        <th width="10%">Edit</th>
+                        <th width="10%">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userList">
+                        <td>{{user.FirstName}} {{user.LastName}}</td>
+                        <td>{{user.Gender}}</td>
+                        <td>{{user.DateOfBirth}}</td>
+                        <td>{{user.EmailAddress}}</td>
+                        <td>{{user.UserName}}</td>
+                        <td><a [routerLink]="['/userview', user.UserName]">View</a></td>
+                        <td><a [routerLink]="['/user', user.UserName]">Edit</a></td>
+                        <td><span class="badge bg-green">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>

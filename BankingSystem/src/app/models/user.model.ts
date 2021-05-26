@@ -10,11 +10,13 @@ export class User {
     public State: string;
     public PinCode: string;
     public Nationality: string;
+    public UserName: string;
 
     constructor(FirstName: string, LastName: string, Gender: string, DateOfBirth: Date, EmailAddress: string,
-        Address: string, Password: string, State: string, PinCode: string, Nationality: string, CustomerID: number) {
-            this.CustomerID = CustomerID;
-            this.FirstName = FirstName;
+        Address: string, Password: string, State: string, PinCode: string, Nationality: string, CustomerID: number,
+        UserName: string) {
+        this.CustomerID = CustomerID;
+        this.FirstName = FirstName;
         this.LastName = LastName;
         this.Gender = Gender;
         this.DateOfBirth = DateOfBirth;
@@ -24,6 +26,6 @@ export class User {
         this.State = State;
         this.PinCode = PinCode;
         this.Nationality = Nationality;
-        
+        this.UserName = UserName;
     }
 }

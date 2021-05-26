@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { CommonService } from '../services/common.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -13,7 +14,10 @@ import { UserService } from '../services/user.service';
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
+  constructor(private router: Router, 
+    private authService: AuthService, 
+    private userService: UserService,
+    private Service: CommonService) { }
 
   ngOnInit(): void {
 
@@ -23,26 +27,33 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.loginForm.value.password1);
+    
     if (this.loginForm.value.username1 == 'admin') {
       if (this.loginForm.value.username1 == 'admin' && this.loginForm.value.password1 == 'admin') {
-        this.authService.login(this.loginForm.value.username1, this.loginForm.value.password1).subscribe(data => {
+        this.authService.login(this.loginForm.value.username1, this.loginForm.value.password1, 'Admin').subscribe(data => {
+         
+          this.Service.sendUpdate(true);
           this.router.navigate(['banking']);
         });
       }
       else {
-        this.userService.fetchUser(this.loginForm.value.username1).pipe(first()).subscribe(records => {
-          if (records && records?.FirstName?.toLowerCase() != this.loginForm.value.username1) {
-            this.authService.login(this.loginForm.value.username1, this.loginForm.value.password1).subscribe(data => {
-              this.router.navigate(['banking']);
-            });
-          }
-          else {
-            alert('Invalid username or password');
-          }
-        }
-        );
+        alert('Invalid username or password');
       }
+    }
+    else {
+      this.userService.checkLoginUser(this.loginForm.value.username1, this.loginForm.value.password1).pipe(first()).subscribe(records => {
+        if (records && records.UserName != null) {
+          const Fullname: string = records.FirstName + ' ' + records.LastName;
+          this.authService.login(this.loginForm.value.username1, this.loginForm.value.password1, Fullname).subscribe(data => {
+            this.Service.sendUpdate(false);
+            this.router.navigate(['banking']);
+          });
+        }
+        else {
+          alert('Invalid username or password');
+        }
+      }
+      );
     }
   }
 }

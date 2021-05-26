@@ -12,31 +12,29 @@
             <h3 class="box-title">{{title}}</h3>
         </div>
         <div class="box-body pad margin">
-            <form class="">
+            <form class="" #statement="ngForm">
                 <div class="row" *ngIf="mode != 'MINI'">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group margin">
                             <label for="FromDate">From Date</label>
                         </div>
                         <div class="form-group">
                             <div class="input-group margin">
-                                <input id="FromDate" name="FromDate" type="text" class="form-control">
+                                <input id="FromDate" name="FromDate" type="date" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group margin">
                             <label for="ToDate">To Date</label>
                         </div>
                         <div class="form-group">
                             <div class="input-group margin">
-                                <input id="ToDate" name="ToDate" type="text" class="form-control">
+                                <input id="ToDate" name="ToDate" type="date" class="form-control">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" *ngIf="mode != 'MINI'">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group margin">
                             <label>Frequency</label>
                         </div>
@@ -51,36 +49,36 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="row">
+                    <div class="col-md-3" *ngIf="mode != 'MINI'">
                         <div class="form-group margin">
                             <div class="pull-left margin">
-                                <button type="button" class="btn btn-sm btn-danger">Clear</button>
+                                <button type="button" class="btn btn-sm btn-danger" (click)="onReset(statement)">Clear</button>
                             </div>
                             <div class="pull-left margin">
                                 <button type="submit" class="btn btn-sm btn-success">Get Statement</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="pull-left margin">
-                            <button (click)="ExportTOExcel()" class="btn btn-sm bg-purple">Export TO Excel</button>
+                    <div class="col-md-3">
+                        <div class="form-group margin">
+                            <div class="pull-left margin">
+                                <button (click)="ExportTOExcel()" class="btn btn-sm bg-purple">Export To Excel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
                 <div class="row">
                     <div class="col-lg-12 table-responsive" #TABLE #table>
                         <div style="padding-bottom: 10px;padding-top: 10px;">
                             <div class="row">
                             </div>
                         </div>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered dataTables_filter">
                             <thead class="thead-dark">
-                                <tr>
-                                    <th>Transaction Date</th>
+                                <tr role="row">
+                                    <th class="sorting_asc">Transaction Date</th>
                                     <th>From Account Number</th>
                                     <th>To Account Number</th>
                                     <th>Transaction Type</th>

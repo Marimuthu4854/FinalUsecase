@@ -9,18 +9,24 @@ export class AuthService {
  
     private isloggedIn: boolean;
     private userName:string = '';
+    private userFullName:string = '';
  
     constructor() {
         this.isloggedIn=false;
     }
  
-    login(username: string, password:string) {
+    login(username: string, password:string, FullName:string) {
  
         //Assuming users are provided the correct credentials.
         //In real app you will query the database to verify.
         this.isloggedIn=true;
         this.userName=username;
+        this.userFullName = FullName;
         return of(this.isloggedIn);
+    }
+
+    CurrentUserFullName(): string {
+        return this.userFullName;
     }
  
     isUserLoggedIn(): boolean {
@@ -28,7 +34,7 @@ export class AuthService {
     }
  
     isAdminUser():boolean {
-        if (this.userName=='Admin') {
+        if (this.userName=='admin') {
             return true; 
         }
         return false;
