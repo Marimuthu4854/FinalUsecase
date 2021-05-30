@@ -13,31 +13,41 @@ export class BankingComponent implements OnInit {
   allAccounts: BankAccount[] = [];
   accounts: BankAccount[] = [];
   searchText: string = '';
-isAdmin:boolean = false;
+  isAdmin: boolean = false;
+  errorMessage:string = '';
 
   constructor(
-    private accountService: BankAccountService, 
+    private accountService: BankAccountService,
     private router: Router,
     private authService: AuthService) { }
 
   ngOnInit(): void {
 
-if(this.authService.isAdminUser()){
-  this.isAdmin = true;
-}
-else{
-  this.isAdmin = false;
-}
-
-    this.accountService.fetchBankAccount('').subscribe(posts => {
-      this.accounts = posts;
-      this.allAccounts = posts;
-      console.log(this.accounts);
-    })
+    if (this.authService.isAdminUser()) {
+      this.isAdmin = true;
+      this.accountService.fetchAllBankAccount().subscribe(posts => {
+        this.accounts = posts;
+        this.allAccounts = posts;
+        console.log(this.accounts);
+      },error => {
+        this.errorMessage = error;
+      }
+      );
+    }
+    else {
+      this.isAdmin = false;
+      this.accountService.fetchBankAccountByUserName(this.authService.CurrentUserName()).subscribe(posts => {
+        this.accounts = posts;
+        this.allAccounts = posts;
+        console.log(this.accounts);
+      },error => {
+        this.errorMessage = error;
+      })
+    }
   }
 
   onSearch() {
-    
+
     if (this.searchText != '') {
       this.accounts = this.allAccounts.filter(
         currentUser => currentUser.CustomerName?.toLowerCase().includes(this.searchText.toLowerCase()));

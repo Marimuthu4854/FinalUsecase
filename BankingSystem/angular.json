@@ -35,9 +35,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/AdminLTE.css",
               "src/assets/css/AdminLTE.min.css",
-              
               "src/styles.css",
-              
               "src/assets/plugins/iCheck/square/blue.css",
               "src/assets/font-awesome/css/font-awesome.min.css",
               "src/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css",

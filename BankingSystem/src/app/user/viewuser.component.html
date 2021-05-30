@@ -1,147 +1,107 @@
 <div class="col-sm-6"></div>
 <br>
-<div class="col-sm-6">
-    <div *ngIf="isSaved" class="callout callout-success">
-        <h4>I am a success callout!</h4>
-
-        <p>This is a green callout.</p>
-      </div>
-</div>
 <div style="margin-left:30% ;" class="col-offset-sm-3 col-sm-6">
     <div class="box box-info">
         <div class="row">
             <div class="box-header with-border margin">
-                <h3 class="box-title">Customer Information</h3>
+                <h3 class="box-title">Customer Information - View</h3>
             </div>
         </div>
-        <form style="margin: 20px;" class="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            
+        <form style="margin: 20px;" *ngFor="let user of currentUser" class="" [formGroup]="userForm"
+            (ngSubmit)="onSubmit()">
             <div class="row">
-                <div class="form-group col-sm-6">
-                    <label>First Name</label>
-                    <label>{{ currentUser.FirstName }}</label>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label>Last Name</label>
-                    <label>{{ currentUser.LastName }}</label>
+                <div class="form-group margin">
+                    <div style="font-weight: bold;">
+                        <label>First Name</label>
+                    </div>
+                    <label>{{ user.FirstName }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <div>
+                    <div style="font-weight: bold;">
+                        <label>Last Name</label>
+                    </div>
+                    <label>{{ user.LastName }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group margin">
+                    <div style="font-weight: bold;">
                         <label>Gender</label>
                     </div>
-                    <label>
-                        <input class="margin" type="radio" value="Male" formControlName="gender">
-                        <span>Male</span>
-                    </label>
-                    <label >
-                        <input class="margin" type="radio" value="Female" formControlName="gender">
-                        <span>Female</span>
-                    </label>
-                    <span *ngIf="userForm && !userForm?.get('gender')?.valid && userForm?.get('gender')?.touched"
-                        class="glyphicon glyphicon-envelope form-control-feedback">
-                        Please select Gender
-                    </span>
+                    <label>{{ user.Gender }}</label>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group margin">
+                    <div style="font-weight: bold;">
+                        <label>Date of Birth</label>
+                    </div>
+                    <label>{{ user.DateOfBirth }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group margin">
+                    <div style="font-weight: bold;">
+                        <label>Email Addresss</label>
+                    </div>
 
-            <div class="row">
-                <div class="form-group margin">
-                    <label>Date of Birth</label>
-                    <input id="dateOfBirth" name="dateOfBirth" type="date" formControlName="dateOfBirth"
-                        class="form-control">
-                    <span
-                        *ngIf="userForm && !userForm?.get('dateOfBirth')?.valid && userForm?.get('dateOfBirth')?.touched"
-                        class="glyphicon glyphicon-envelope form-control-feedback">
-                        Please select Date Of Birth
-                    </span>
+                    <label>{{ user.EmailAddress }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <label>Email Addresss</label>
-                    <input id="emailAddress" name="emailAddress" type="text" formControlName="emailAddress"
-                        placeholder="test@example.com" class="form-control">
-                    <span
-                        *ngIf="userForm && !userForm?.get('emailAddress')?.valid && userForm?.get('emailAddress')?.touched"
-                        class="glyphicon glyphicon-envelope form-control-feedback">
-                        Please enter Email Address
-                    </span>
+                    <div style="font-weight: bold;">
+                        <label>Username (for Login)</label>
+                    </div>
+                    <label>{{ user.UserName }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <label>Username (for Login)</label>
-                    <input id="Username" type="text" class="form-control" formControlName="Username">
-                    <span *ngIf="userForm && !userForm?.get('Username')?.valid && userForm?.get('Username')?.touched"
-                        class="glyphicon glyphicon-lock form-control-feedback">
-                        Please enter Username
-                    </span>
+                    <div style="font-weight: bold;">
+                        <label>Password</label>
+                    </div>
+                    <label>{{ user.Password }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <label>Password</label>
-                    <input id="password" type="password" class="form-control" formControlName="password">
-                    <span *ngIf="userForm && !userForm?.get('password')?.valid && userForm?.get('password')?.touched"
-                        class="glyphicon glyphicon-lock form-control-feedback">
-                        Please enter Password
-                    </span>
+                    <div style="font-weight: bold;">
+                        <label>Address</label>
+                    </div>
+                    <label>{{ user.Address }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <label>Address</label>
-                    <input id="address" name="address" type="textarea" col="2" row="3" formControlName="address"
-                        class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('address')?.valid && userForm?.get('address')?.touched"
-                        class="glyphicon glyphicon-envelope form-control-feedback">
-                        Please enter Address
-                    </span>
+                    <div style="font-weight: bold;">
+                        <label>State</label>
+                    </div>
+                    <label>{{ user.State }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <label>State</label>
-                    <input id="state" name="state" type="text" formControlName="state" class="form-control">
-                    <span *ngIf="userForm && !userForm?.get('state')?.valid && userForm?.get('state')?.touched"
-                        class="glyphicon glyphicon-envelope form-control-feedback">
-                        Please enter State
-                    </span>
+                    <div style="font-weight: bold;">
+                        <label>PinCode</label>
+                    </div>
+                    <label>{{ user.PinCode }}</label>
                 </div>
             </div>
             <div class="row">
-            <div class="form-group margin">
-                <label>PinCode</label>
-                <input id="PinCode" name="pinCode" type="text" formControlName="pinCode" class="form-control">
-                <span *ngIf="userForm && !userForm?.get('pinCode')?.valid && userForm?.get('pinCode')?.touched"
-                    class="glyphicon glyphicon-envelope form-control-feedback">
-                    Please enter PinCode
-                </span>
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group margin">
-                <label>Nationality</label>
-                <label>
-                    <input class="margin" type="radio" value="Indian" formControlName="nationality">
-                    <span>Indian</span>
-                </label>
-                <label>
-                    <input class="margin" type="radio" value="NRI" formControlName="nationality">
-                    <span>NRI</span>
-                </label>
-                <span *ngIf="userForm && !userForm?.get('nationality')?.valid && userForm?.get('nationality')?.touched"
-                    class="glyphicon glyphicon-envelope form-control-feedback">
-                    Please enter Nationality
-                </span>
-            </div>
+                <div class="form-group margin">
+                    <div style="font-weight: bold;">
+                        <label>Nationality</label>
+                    </div>
+                    <label>{{ user.Nationality }}</label>
+                </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-info" (click)="onReset()">Back To List</button>
+                        <button type="button" class="btn btn-sm btn-primary" (click)="onGoTo()">Back To List</button>
                     </div>
                 </div>
             </div>

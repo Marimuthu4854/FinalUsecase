@@ -1,9 +1,16 @@
 <br>
 <div class="row">
     <div class="col-md-10" style="margin-left:15%; margin-top: 5%;">
+        <div>
+            <div *ngIf="errorMessage" class="callout callout-danger">
+              <h6>Something went wrong!</h6>
+              <hr>
+              <p>{{errorMessage}}</p>
+            </div>
+          </div>
         <div class="box box-warning">
         <div class="box-header">
-            <button class="btn btn-sm btn-success" [routerLink]="['/user','']">Add New Customer</button>
+            <button *ngIf="isAdmin" class="btn btn-sm btn-success" [routerLink]="['/user','']">Add New Customer</button>
         </div>
         <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">

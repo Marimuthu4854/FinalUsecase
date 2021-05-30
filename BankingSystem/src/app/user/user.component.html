@@ -1,17 +1,24 @@
 <div class="col-sm-6"></div>
 <br>
 <div class="col-sm-6">
-    <div *ngIf="isSaved" class="callout callout-success">
-        <h4>I am a success callout!</h4>
-
-        <p>This is a green callout.</p>
-      </div>
+    
 </div>
 <div style="margin-left:30% ;" class="col-offset-sm-3 col-sm-6">
+    <div *ngIf="isSaved" class="callout callout-success">
+        
+        <p>{{SuccessMessage}}</p>
+    </div>
+    <div>
+        <div *ngIf="errorMessage" class="callout callout-danger">
+            <h6>Something went wrong!</h6>
+            <hr>
+            <p>{{errorMessage}}</p>
+        </div>
+    </div>
     <div class="box box-info">
         <div class="row">
             <div class="box-header with-border margin">
-                <h3 class="box-title">Customer Registration</h3>
+                <h3 class="box-title">Customer Information - {{ title }}</h3>
             </div>
         </div>
         <form style="margin: 20px;" class="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -42,7 +49,7 @@
                         <input class="margin" type="radio" value="Male" formControlName="gender">
                         <span>Male</span>
                     </label>
-                    <label >
+                    <label>
                         <input class="margin" type="radio" value="Female" formControlName="gender">
                         <span>Female</span>
                     </label>
@@ -119,39 +126,44 @@
                 </div>
             </div>
             <div class="row">
-            <div class="form-group margin">
-                <label>PinCode</label>
-                <input id="PinCode" name="pinCode" type="text" formControlName="pinCode" class="form-control">
-                <span *ngIf="userForm && !userForm?.get('pinCode')?.valid && userForm?.get('pinCode')?.touched"
-                    class="glyphicon glyphicon-envelope form-control-feedback">
-                    Please enter PinCode
-                </span>
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group margin">
-                <label>Nationality</label>
-                <label>
-                    <input class="margin" type="radio" value="Indian" formControlName="nationality">
-                    <span>Indian</span>
-                </label>
-                <label>
-                    <input class="margin" type="radio" value="NRI" formControlName="nationality">
-                    <span>NRI</span>
-                </label>
-                <span *ngIf="userForm && !userForm?.get('nationality')?.valid && userForm?.get('nationality')?.touched"
-                    class="glyphicon glyphicon-envelope form-control-feedback">
-                    Please enter Nationality
-                </span>
-            </div>
+                <div class="form-group margin">
+                    <label>PinCode</label>
+                    <input id="PinCode" name="pinCode" type="text" formControlName="pinCode" class="form-control">
+                    <span *ngIf="userForm && !userForm?.get('pinCode')?.valid && userForm?.get('pinCode')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
+                        Please enter PinCode
+                    </span>
+                </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
-                    <div class="pull-left">
+                    <label>Nationality</label>
+                    <label>
+                        <input class="margin" type="radio" value="Indian" formControlName="nationality">
+                        <span>Indian</span>
+                    </label>
+                    <label>
+                        <input class="margin" type="radio" value="NRI" formControlName="nationality">
+                        <span>NRI</span>
+                    </label>
+                    <span
+                        *ngIf="userForm && !userForm?.get('nationality')?.valid && userForm?.get('nationality')?.touched"
+                        class="glyphicon glyphicon-envelope form-control-feedback">
+                        Please enter Nationality
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group margin">
+                    <div class="pull-left margin">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="onGoTo()">Back To List</button>
+                    </div>
+                    <div class="pull-right margin">
                         <button type="button" class="btn btn-sm btn-danger" (click)="onReset()">Clear</button>
                     </div>
-                    <div class="pull-right">
-                        <button type="submit" [disabled]="!userForm.valid" class="btn btn-sm btn-success">Save</button>
+                    <div class="pull-right margin">
+                        <button type="submit" [disabled]="!userForm.valid"
+                            class="btn btn-sm btn-success">{{btnText}}</button>
                     </div>
                 </div>
             </div>

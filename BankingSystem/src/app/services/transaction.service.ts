@@ -1,45 +1,27 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { Transaction } from "../models/transaction.model";
+import { CommonService } from "./common.service";
 
 @Injectable()
 export class TransactionService{
 
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient, private commonService: CommonService ){
 
     }
 
     SaveTransaction(transaction: Transaction) {
-        this.http.post('https://newproject-e37f6-default-rtdb.firebaseio.com/transaction.json',
-        transaction,
-            {
-                headers: new HttpHeaders({
-                    "Access-Control-Allow-Origin": "*",
-                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE',
-                    'Access-Control-Allow-Headers': '*',
-                    'Content-Type': 'application/json', 'crossDomain': 'true'
-                })
-            })
+       return this.http.post('https://newproject-e37f6-default-rtdb.firebaseio.com/transaction.json',
+        transaction)
             .pipe(map(responseData => {
                 return responseData;
-            }))
-            .subscribe(result => {
-                console.log(result);
-            })
+            }), catchError(errorRes => this.commonService.handleError(errorRes)));
     }
 
     fetchTransaction(mode: string) {
       const transactionData:Transaction[]=[];
-      return this.http.get('https://newproject-e37f6-default-rtdb.firebaseio.com/transaction.json',
-            {
-                headers: new HttpHeaders({
-                    "Access-Control-Allow-Origin": "*",
-                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE',
-                    'Access-Control-Allow-Headers': '*',
-                    'Content-Type': 'application/json', 'crossDomain': 'true'
-                })
-            })
+      return this.http.get('https://newproject-e37f6-default-rtdb.firebaseio.com/transaction.json')
             .pipe(
                 map(responseData => {
 
@@ -50,6 +32,6 @@ export class TransactionService{
                 }
                 console.log(transactionData);
                 return transactionData;
-            }))
+            }), catchError(errorRes => this.commonService.handleError(errorRes)))
         }
 }

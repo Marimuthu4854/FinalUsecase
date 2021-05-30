@@ -14,3 +14,39 @@ input.ng-invalid.ng-touched {
 .form-control{
   font-size: 12px;
 }
+
+.nav-tabs-custom>.nav-tabs>li{
+  border-top: 3px solid transparent;
+  margin-bottom: -2px;
+  margin-right: 5px;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active{
+  border-top-color: #3c8dbc;
+}
+
+  .nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav>li {
+  position: relative;
+  display: block;
+}
+
+
+.nav-tabs-custom>.nav-tabs>li>a {
+text-decoration: none !important;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active>a {
+  border-top-color: transparent !important;
+  border-left-color: #f4f4f4 !important;
+  border-right-color: #f4f4f4 !important;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+  background-color: #fff !important;
+  color: #444 !important;
+}

@@ -1,28 +1,46 @@
 <br>
 <div class="col-sm-6"></div>
 <div style="margin-left:25% ;" class="col-offset-sm-3 col-sm-6">
-    <div class="box box-warning">
-        <div class="row">
-        <div class="box-header with-border margin">
-            <h3 class="box-title">Fund Transfer</h3>
+    <div>
+        <div *ngIf="errorMessage" class="callout callout-danger">
+            <h6>Something went wrong!</h6>
+            <hr>
+            <p>{{errorMessage}}</p>
         </div>
     </div>
+    <div>
+        <div *ngIf="isTransactionSucceed" class="callout callout-success">
+            <p>Transaction successfull!</p>
+        </div>
+    </div>
+    <div class="box box-warning">
+        <div class="row">
+            <div class="box-header with-border margin">
+                <h3 class="box-title">Fund Transfer</h3>
+            </div>
+        </div>
         <form style="margin: 20px;" class="" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-           <div class="row">
+            <div class="row">
                 <div class="form-group margin">
-                    <label>Transaction Type</label>   
-                    <select class="form-control" id="TransactionType" name="TransactionType" formControlName="TransactionType">
-                      <option value="NA">Select</option>
-                      <option value="Credit">Credit</option>
-                      <option value="Debit" selected>Debit</option>
+                    <label>Transaction Type</label>
+                    <select class="form-control" id="TransactionType" name="TransactionType"
+                        formControlName="TransactionType">
+                        <option value="NA">Select</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Debit" selected>Debit</option>
                     </select>
-                  </div>
+                </div>
             </div>
             <div class="row">
                 <div class="form-group margin">
                     <label for="FromAccountNumber">Transfer From</label>
-                    <input id="FromAccountNumber"  name="FromAccountNumber" formControlName="FromAccountNumber" type="text" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('FromAccountNumber')?.valid && transactionForm?.get('FromAccountNumber')?.touched" class="form-control-feedback">
+                    <select class="form-control" id="FromAccountNumber" name="FromAccountNumber"
+                    formControlName="FromAccountNumber">
+                    <option *ngFor="let account of accounts" selected value={{account.AccountNumber}}>{{account.AccountNumber}}</option>
+                </select>
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('FromAccountNumber')?.valid && transactionForm?.get('FromAccountNumber')?.touched"
+                        class="form-control-feedback">
                         Please select source account
                     </span>
                 </div>
@@ -30,8 +48,11 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="ToAccountNumber">Beneficiary Account Number</label>
-                    <input id="ToAccountNumber" name="ToAccountNumber" formControlName="ToAccountNumber" type="number" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('ToAccountNumber')?.valid && transactionForm?.get('ToAccountNumber')?.touched" class="form-control-feedback">
+                    <input id="ToAccountNumber" name="ToAccountNumber" formControlName="ToAccountNumber" type="number"
+                        class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('ToAccountNumber')?.valid && transactionForm?.get('ToAccountNumber')?.touched"
+                        class="form-control-feedback">
                         Please enter Beneficiary Account Number
                     </span>
                 </div>
@@ -39,8 +60,11 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="ToAccountNumber">Confirm Beneficiary Account Number</label>
-                    <input id="ToAccountNumber" name="ToAccountNumber" formControlName="ToAccountNumber" type="number" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('ToAccountNumber')?.valid && transactionForm?.get('ToAccountNumber')?.touched" class="form-control-feedback">
+                    <input id="ToAccountNumber" name="ToAccountNumber" formControlName="ToAccountNumber" type="number"
+                        class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('ToAccountNumber')?.valid && transactionForm?.get('ToAccountNumber')?.touched"
+                        class="form-control-feedback">
                         Please Confirm Beneficiary Account Number
                     </span>
                 </div>
@@ -48,8 +72,11 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="TransactionRemarks">Transaction Remarks</label>
-                    <input id="TransactionRemarks" name="TransactionRemarks" formControlName="TransactionRemarks" type="text" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('TransactionRemarks')?.valid && transactionForm?.get('TransactionRemarks')?.touched" class="form-control-feedback">
+                    <input id="TransactionRemarks" name="TransactionRemarks" formControlName="TransactionRemarks"
+                        type="text" class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('TransactionRemarks')?.valid && transactionForm?.get('TransactionRemarks')?.touched"
+                        class="form-control-feedback">
                         Please enter Transaction Remarks
                     </span>
                 </div>
@@ -57,8 +84,11 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="TransactionAmount">Transaction Amount</label>
-                    <input id="TransactionAmount" name="TransactionAmount" formControlName="TransactionAmount" type="number" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('TransactionAmount')?.valid && transactionForm?.get('TransactionAmount')?.touched" class="form-control-feedback">
+                    <input id="TransactionAmount" name="TransactionAmount" formControlName="TransactionAmount"
+                        type="number" class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('TransactionAmount')?.valid && transactionForm?.get('TransactionAmount')?.touched"
+                        class="form-control-feedback">
                         Please enter Transaction Amount
                     </span>
                 </div>
@@ -66,8 +96,11 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="TransactionStatus">Transaction Status</label>
-                    <input id="TransactionStatus" name="TransactionStatus" formControlName="TransactionStatus" type="text" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('TransactionStatus')?.valid && transactionForm?.get('TransactionStatus')?.touched" class="form-control-feedback">
+                    <input id="TransactionStatus" name="TransactionStatus" formControlName="TransactionStatus"
+                        type="text" class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('TransactionStatus')?.valid && transactionForm?.get('TransactionStatus')?.touched"
+                        class="form-control-feedback">
                         Please enter Transaction Status
                     </span>
                 </div>
@@ -75,20 +108,27 @@
             <div class="row">
                 <div class="form-group margin">
                     <label for="TransactionDate">Transaction Date</label>
-                    <input id="TransactionDate" name="TransactionDate" formControlName="TransactionDate" type="date" class="form-control">
-                    <span *ngIf="transactionForm && !transactionForm?.get('TransactionDate')?.valid && transactionForm?.get('TransactionDate')?.touched" class="form-control-feedback">
+                    <input id="TransactionDate" name="TransactionDate" formControlName="TransactionDate" type="date"
+                        class="form-control">
+                    <span
+                        *ngIf="transactionForm && !transactionForm?.get('TransactionDate')?.valid && transactionForm?.get('TransactionDate')?.touched"
+                        class="form-control-feedback">
                         Please enter Transaction Date
                     </span>
                 </div>
-            </div>            
+            </div>
             <div class="row">
                 <div class="form-group margin">
-                <div class="pull-left">
-                    <button type="button" class="btn btn-sm btn-danger" (click)="onReset()">Clear</button>
-                </div>
-                <div class="pull-right">
-                    <button type="submit" [disabled]="!transactionForm.valid" class="btn btn-sm btn-success">Save</button>
-                </div>
+                    <div class="pull-left margin">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="onGoTo()">Back To List</button>
+                    </div>
+                    <div class="pull-right margin">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="onReset()">Clear</button>
+                    </div>
+                    <div class="pull-right margin">
+                        <button type="submit" [disabled]="!transactionForm.valid"
+                            class="btn btn-sm btn-success">Save</button>
+                    </div>
                 </div>
             </div>
             <div class="row hide" *ngIf="isTransactionSucceed">
@@ -96,7 +136,7 @@
                     <label>Status</label>
                     <label>Success</label>
                 </div>
-            </div>    
+            </div>
         </form>
     </div>
 </div>

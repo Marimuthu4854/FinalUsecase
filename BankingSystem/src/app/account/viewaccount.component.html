@@ -1,0 +1,79 @@
+<div class="col-sm-6"></div>
+<br>
+<div style="margin-left:30% ;" class="col-offset-sm-3 col-sm-6">
+    <div class="box box-info">
+        <div class="row">
+            <div class="box-header with-border margin">
+                <h3 class="box-title">Account Detail - View</h3>
+            </div>
+        </div>
+        <form style="margin: 20px;">
+            <div *ngFor="let account of accounts">
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Customer Name</label>
+                        </div>
+                        <label>{{ account.CustomerName }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Account Type</label>
+                        </div>
+                        <label>{{ account.AccountType }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Account Category</label>
+                        </div>
+                        <label>{{ account.AccountCategory }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Branch</label>
+                        </div>
+                        <label>{{ account.BranchID }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Account Number</label>
+                        </div>
+
+                        <label>{{ account.AccountNumber }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Initial Balance</label>
+                        </div>
+                        <label>{{ account.Balance }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margin">
+                        <div style="font-weight: bold;">
+                            <label>Status</label>
+                        </div>
+                        <label>{{ account.Status }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group margin">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="onGoTo()">Back To List</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

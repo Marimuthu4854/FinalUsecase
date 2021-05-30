@@ -13,10 +13,14 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  title:string = '';
   userForm!: FormGroup;
   isAddMode = false;
   currentUser: User[] = [];
   isSaved: boolean = false;
+  btnText:string='Save';
+  errorMessage:string = '';
+  SuccessMessage:string='';
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
@@ -40,9 +44,13 @@ export class UserComponent implements OnInit {
 
     if (this.route.snapshot.params['name'] != '') {
       this.isAddMode = false;
+      this.btnText = "Update";
+      this.title = 'Update';
     }
     else {
       this.isAddMode = true;
+      this.btnText = "Save";
+      this.title = 'Create';
     }
     
     if (!this.isAddMode) {
@@ -61,7 +69,7 @@ export class UserComponent implements OnInit {
           'Username': posts.UserName
         });
         console.log(posts);
-      });
+      }, error => this.errorMessage = error);
     }
   }
 
@@ -87,23 +95,30 @@ export class UserComponent implements OnInit {
     if (this.isAddMode) {
       this.userService.SaveUser(userData).subscribe(result => {
         if (result != null) {
-          alert('Success!');
+          this.SuccessMessage = "Saved successfully!";
           this.router.navigateByUrl('/userlist');
+          window.scrollTo(0, 0);
+          setTimeout(() => {
+            this.isSaved = false;
+            this.router.navigateByUrl('/userlist');
+          }, 1500);
         }
         else {
-          alert('failed');
+          window.scrollTo(0, 0);
+          this.SuccessMessage = "Failed";
         }
-      });
+      }, error => this.errorMessage = error);
     }
     else {
       console.log(userData);
       this.userService.UpdateUser(userData);
       this.isSaved = true;
+      this.SuccessMessage = "Updated successfully!";
+      window.scrollTo(0, 0);
       setTimeout(() => {
         this.isSaved = false;
         this.router.navigateByUrl('/userlist');
-      }, 1000);
-
+      }, 1500);
       //.subscribe(result => {
       //   if (result != null) {
       //     alert('Success!');
@@ -120,4 +135,7 @@ export class UserComponent implements OnInit {
     this.userForm.reset();
   }
 
+  onGoTo(){
+    this.router.navigateByUrl('/userlist');
+}
 }

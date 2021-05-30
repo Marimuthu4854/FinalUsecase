@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service';
 export class ViewUserComponent implements OnInit {
   userForm!: FormGroup;
   isAddMode = false;
-  currentUser!: User;
+  currentUser : User[] = [];
   isSaved: boolean = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
@@ -46,17 +46,19 @@ export class ViewUserComponent implements OnInit {
     
     if (!this.isAddMode) {
       this.userService.fetchUser(this.route.snapshot.params['name']).subscribe(posts => {
-        this.currentUser.FirstName = posts.FirstName;
-        this.currentUser.LastName = posts.LastName;
-        this.currentUser.Gender = posts.Gender;
-        this.currentUser.DateOfBirth = posts.DateOfBirth;
-        this.currentUser.EmailAddress = posts.EmailAddress;
-        this.currentUser.Address = posts.Address;
-        this.currentUser.Password = posts.Password;
-        this.currentUser.State = posts.State;
-        this.currentUser.PinCode = posts.PinCode;
-        this.currentUser.Nationality = posts.Nationality;
-        this.currentUser.UserName = posts.UserName;
+        this.currentUser.push(posts);
+        console.log(this.currentUser);
+        // this.currentUser[0].FirstName = posts.FirstName;
+        // this.currentUser[0].LastName = posts.LastName;
+        // this.currentUser[0].Gender = posts.Gender;
+        // this.currentUser[0].DateOfBirth = posts.DateOfBirth;
+        // this.currentUser[0].EmailAddress = posts.EmailAddress;
+        // this.currentUser[0].Address = posts.Address;
+        // this.currentUser[0].Password = posts.Password;
+        // this.currentUser[0].State = posts.State;
+        // this.currentUser[0].PinCode = posts.PinCode;
+        // this.currentUser[0].Nationality = posts.Nationality;
+        // this.currentUser[0].UserName = posts.UserName;
         
       });
     }
@@ -116,6 +118,10 @@ export class ViewUserComponent implements OnInit {
 
   onReset() {
     this.userForm.reset();
+  }
+
+  onGoTo(){
+      this.router.navigateByUrl('/userlist');
   }
 
 }

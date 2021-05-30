@@ -10,9 +10,10 @@ export class BankAccount {
     public Status:string;
     public CreatedDate: string;
     public CreatedBy: string;
+    public UserName:string;
 
     constructor(AccountID: number, CustomerName: string, AccountNumber: number, AccountType: string, AccountCategory: string,
-        CreatedDate: string, CreatedBy: string, Balance:number,BranchID:number,Status:string) {
+        CreatedDate: string, CreatedBy: string, Balance:number,BranchID:number,Status:string, UserName:string) {
         this.AccountID = AccountID;
         this.CustomerName = CustomerName;
         this.AccountNumber = AccountNumber;
@@ -23,5 +24,6 @@ export class BankAccount {
         this.Status = Status;
         this.CreatedDate = CreatedDate;
         this.CreatedBy = CreatedBy;
+        this.UserName = UserName;
     }
 }

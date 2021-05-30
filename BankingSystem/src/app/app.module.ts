@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -10,7 +11,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { ListUserComponent } from './user/listuser.component';
-import {ViewUserComponent} from './user/viewuser.component';
+import { ViewUserComponent } from './user/viewuser.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AccountComponent } from './account/account.component';
 import { AccounttypeComponent } from './accounttype/accounttype.component';
@@ -26,6 +27,8 @@ import { AuthService } from './services/auth.service';
 import { BankAccountService } from './services/account.service';
 import { TransactionService } from './services/transaction.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { ViewAccountComponent } from './account/viewaccount.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 const appRoutes: Routes = [{
   path: '',
@@ -50,9 +53,9 @@ const appRoutes: Routes = [{
   canActivate: [AuthGuard]
 },
 {
-path:'userview/:name',
-component:ViewUserComponent,
-canActivate:[AuthGuard]
+  path: 'userview/:name',
+  component: ViewUserComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'unauthorized',
@@ -78,6 +81,16 @@ canActivate:[AuthGuard]
 {
   path: 'account',
   component: AccountComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'account/:AccNum',
+  component: AccountComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'viewaccount/:AccNum',
+  component: ViewAccountComponent,
   canActivate: [AuthGuard]
 },
 {
@@ -114,6 +127,7 @@ canActivate:[AuthGuard]
     ViewUserComponent,
     TransactionComponent,
     AccountComponent,
+    ViewAccountComponent,
     AccounttypeComponent,
     BranchComponent,
     TransactiontypeComponent,
@@ -124,12 +138,19 @@ canActivate:[AuthGuard]
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService, BankAccountService, TransactionService, AuthService, AuthGuard],
+  providers: [UserService,
+    BankAccountService,
+    TransactionService,
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

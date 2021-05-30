@@ -1,8 +1,9 @@
 import { User } from "../models/user.model";
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { Injectable } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CommonService {
     private subjectName = new Subject<any>();
 
@@ -10,12 +11,25 @@ export class CommonService {
 
     }
 
-    sendUpdate(isAdmin: boolean) { //the component that wants to update something, calls this fn
-        this.subjectName.next({ isAdmin: isAdmin }); //next() will feed the value in Subject
+    sendUpdate(isAdmin: boolean) {
+        this.subjectName.next({ isAdmin: isAdmin });
     }
 
-    getUpdate(): Observable<any> { //the receiver component calls this function 
-        return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
+    getUpdate(): Observable<any> {
+        return this.subjectName.asObservable();
+    }
+
+    handleError(error: HttpErrorResponse) {
+        let errorMessage = 'Unknown error!';
+        if (error.error instanceof ErrorEvent) {
+            // Client-side errors
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // Server-side errors
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+       
+        return throwError(errorMessage);
     }
 
     generateCustomerID(users: User) {
@@ -33,7 +47,7 @@ export class CommonService {
     generateBranchID(users: User) {
 
     }
-    
+
     generateAccountID(users: User) {
 
     }
